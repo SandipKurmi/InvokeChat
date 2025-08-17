@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="bg-neutral-900 text-white overflow-x-hidden">
+    <div class="container mx-auto max-w-3xl pb-44" id="chat-container">
+      <!-- Messsages goes hear -->
+      <!-- user message -->
+      <div class="my-6 bg-neutral-800 p-3 rounded-xl ml-auto max-w-fit">
+        Hi How are you
+      </div>
+
+      <div class="my-6 p-3 rounded-xl mr-auto max-w-fit">Hi How are you</div>
+
+      <!-- bottom text arey goes hear  -->
+      <div class="fixed bottom-0 left-0 right-0 p-4 bg-neutral-900">
+        <div class="container mx-auto max-w-3xl relative">
+          <input
+            id="message-input"
+            type="text"
+            class="bg-neutral-800 p-3 pr-12 rounded-xl w-full"
+            placeholder="Type your message here"
+          />
+          <button
+            id="send-button"
+            class="absolute right-3 top-1/2 -translate-y-1/2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script src="script.js"></script>
+</html>

@@ -17,8 +17,17 @@ app.use(express.static(path.join(__dirname, "frontend")));
 app.post("/api/chat", async (req, res) => {
   try {
     const userMessage = req.body.message;
+    const threadId = req.body.threadId;
 
-    const response = await generate(userMessage);
+    if (!threadId) {
+      return res.status(400).json({ error: "Thread ID is required" });
+    }
+
+    if (!userMessage) {
+      return res.status(400).json({ error: "Message is required" });
+    }
+
+    const response = await generate(userMessage, threadId);
 
     res.json({
       response,

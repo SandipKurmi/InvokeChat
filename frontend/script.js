@@ -2,6 +2,20 @@ const input = document.getElementById("message-input");
 const sendButton = document.getElementById("send-button");
 const chatContainer = document.getElementById("chat-container");
 
+let threadId = null;
+
+// generate threadId
+function generateThreadId() {
+  return Math.random().toString(36).substring(2, 10);
+}
+
+// generate threadId if not exists
+function generateThreadIdIfNotExists() {
+  if (!threadId) {
+    threadId = generateThreadId();
+  }
+}
+
 input.addEventListener("keyup", handleEnter);
 sendButton.addEventListener("click", handleSend);
 
@@ -36,12 +50,19 @@ async function generate(text) {
 
   // 2. Send message to backend and get response
   try {
+    // generate threadId if not exists
+    generateThreadIdIfNotExists();
+
+    // send message to backend
     const response = await fetch("/api/chat", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ message: text }),
+      body: JSON.stringify({
+        message: text,
+        threadId: threadId,
+      }),
     });
 
     const data = await response.json();

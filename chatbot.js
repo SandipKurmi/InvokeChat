@@ -36,7 +36,16 @@ A: (Search for and share the most recent news in IT)
   const messages = cache.get(threadId) || baseMessages;
 
   messages.push({ role: "user", content: text });
+
+  const MAX_RETRIES = 10;
+  let retries = 0;
+
   while (true) {
+    if (retries >= MAX_RETRIES) {
+      throw new Error("Max retries reached");
+    }
+    retries++;
+
     const completion = await groq.chat.completions.create({
       messages: messages,
       tools: [
